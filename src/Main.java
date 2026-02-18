@@ -45,7 +45,7 @@ public class Main {
 
         PrintWriter out = new PrintWriter(new FileWriter("wyniki2.txt"));
 
-        // ===== Zadanie 1 =====
+
         out.println("1.");
         for (String s : napisy) {
             if (s.equals(new StringBuilder(s).reverse().toString())) {
