@@ -7,18 +7,6 @@ import java.util.List;
 
 
 public class Main {
-
-    static long naDziesietna(String s) {
-        long wartosc = 0;
-        for (char c : s.toCharArray()) {
-            wartosc *= 3;
-            if (c == '+') wartosc += 1;
-            else if (c == '*') wartosc += 2;
-        }
-        return wartosc;
-    }
-
-
     static String naSymbole(long n) {
         if (n == 0) return "o";
         StringBuilder sb = new StringBuilder();
@@ -32,19 +20,33 @@ public class Main {
         return sb.reverse().toString();
     }
 
+    static long naDziesietna(String s) {
+        long wartosc = 0;
+        for (char c : s.toCharArray()) {
+            wartosc *= 3;
+            if (c == '+') wartosc += 1;
+            else if (c == '*') wartosc += 2;
+        }
+        return wartosc;
+    }
+
+
+
     public static void main(String[] args) throws Exception {
 
-        BufferedReader br = new BufferedReader(new FileReader("symbole.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("symbole.txt"));
         List<String> napisy = new ArrayList<>();
         String linia;
+        
 
-        while ((linia = br.readLine()) != null) {
+        while ((linia = reader.readLine()) != null) {
             napisy.add(linia.trim());
         }
-        br.close();
+        reader.close();
 
         PrintWriter out = new PrintWriter(new FileWriter("wyniki2.txt"));
 
+        
 
         out.println("1.");
         for (String s : napisy) {
@@ -57,6 +59,7 @@ public class Main {
         long max = -1;
         String maxNapis = "";
 
+        
         for (String s : napisy) {
             long v = naDziesietna(s);
             if (v > max) {
@@ -77,7 +80,9 @@ public class Main {
 
         out.println("3.");
         out.println(suma);
+
         out.println(naSymbole(suma));
+
 
         out.close();
     }
